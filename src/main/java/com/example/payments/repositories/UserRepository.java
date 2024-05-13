@@ -20,5 +20,6 @@ public interface UserRepository extends JpaRepository<User, Integer> {
     @Query("select * from User where email = :email and password = :password")
     public List<User> userExists(String email,String password);
 
+    @Query("select max(id) from User")
     public Integer findMaxId();
 }

@@ -30,7 +30,6 @@ public class UserController {
 
   @PostMapping("create_user")
   public String createUser(@Valid @RequestBody User user) {
-    // TODO
     return userService.createUser(user);
   }
 

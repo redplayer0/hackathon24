@@ -3,4 +3,4 @@ spring:
     url: jdbc:sqlite:project.db
     driver-class-name: org.sqlite.JDBC
   jpa.show-sql: true
-  jpa.properties.hibernate.dialect: org.hibernate.community.dialect.SQLiteDialect  
+  jpa.properties.hibernate.dialect: org.hibernate.community.dialect.SQLiteDialect
