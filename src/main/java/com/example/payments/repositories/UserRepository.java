@@ -12,14 +12,13 @@ import com.example.payments.entities.User;
  * UserRepository
  */
 @Repository
-public interface UserRepository extends JpaRepository<User, Integer> {
+public interface UserRepository extends JpaRepository<User, Long> {
+  public boolean existsByEmail(String email);
+  public List<User> findByEmail(String email);
 
-    public boolean existsByEmail(String email);
-    public List<User> findByEmail(String email);
+  // @Query("select * from User")
+  // public List<User> userExists(String email, String password);
 
-    @Query("select * from User where email = :email and password = :password")
-    public List<User> userExists(String email,String password);
-
-    @Query("select max(id) from User")
-    public Integer findMaxId();
+  @Query("select max(id) from User")
+  public Long findMaxId();
 }
