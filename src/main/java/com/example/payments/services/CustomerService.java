@@ -21,8 +21,8 @@ public class CustomerService {
   }
 
   @Transactional
-  public String createUser(Customer customer) {
-    if (!customerRepository.existsByEmail(customer.getVat())) {
+  public String createCustomer(Customer customer) {
+    if (!customerRepository.existsByVat(customer.getVat())) {
       customerRepository.save(customer);
       return "Customer record created successfully.";
     } else {
