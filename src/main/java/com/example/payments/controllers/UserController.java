@@ -33,18 +33,23 @@ public class UserController {
     return userService.createUser(user);
   }
 
+  @GetMapping("test")
+  public String test() {
+    return "TEST";
+  }
+
   @GetMapping("read_users")
   public List<User> readUsers() {
     return userService.readUsers();
   }
 
-  @PutMapping("update_user")
-  public String updateStudet(@RequestBody User user) {
-    return userService.updateUser(user);
-  }
+  // @PutMapping("update_user")
+  // public String updateStudet(@RequestBody User user) {
+  //   return userService.updateUser(user);
+  // }
 
-  @DeleteMapping("delete_user")
-  public String deleteUser(@RequestBody User user) {
-    return userService.deleteUser(user);
-  }
+  // @DeleteMapping("delete_user")
+  // public String deleteUser(@RequestBody User user) {
+  //   return userService.deleteUser(user);
+  // }
 }

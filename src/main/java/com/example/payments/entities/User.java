@@ -1,10 +1,13 @@
 package com.example.payments.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.NoArgsConstructor;
 
 /**
  * User
@@ -13,18 +16,21 @@ import lombok.Data;
 @Data
 @AllArgsConstructor
 @Table(name = "USERS")
+@NoArgsConstructor
 public class User {
   @Id
-  private Long id;
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
+  private Long user_id;
   private String email;
   private String password;
+  private String role;
 
-  public Long getId() {
-    return id;
+  public Long getUser_id() {
+    return user_id;
   }
 
-  public void setId(Long id) {
-    this.id = id;
+  public void setUser_id(Long id) {
+    this.user_id = id;
   }
 
   public String getEmail() {
@@ -42,5 +48,13 @@ public class User {
   public void setPassword(String password) {
     this.password = password;
   }
+
+public String getRole() {
+	return role;
+}
+
+public void setRole(String role) {
+	this.role = role;
+}
 
 }
