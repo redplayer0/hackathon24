@@ -14,4 +14,5 @@ import com.example.payments.entities.User;
 public interface UserRepository extends JpaRepository<User, Integer> {
   public boolean existsByEmail(String email);
   public Optional<User> findByEmail(String email);
+  public Optional<User> findByEmailAndPassword(String email, String password);
 }

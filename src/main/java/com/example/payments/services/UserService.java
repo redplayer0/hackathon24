@@ -34,6 +34,14 @@ public class UserService {
     return userRepository.findAll();
   }
 
+  public boolean authenticateUser(User user) {
+    if (!userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isEmpty()) {
+      return true;
+    } else {
+      return false;
+    }
+  }
+    
   public String getUserRole(String email) {
     Optional<User> possibleUser = userRepository.findByEmail(email);
     if (!possibleUser.isEmpty()) {
