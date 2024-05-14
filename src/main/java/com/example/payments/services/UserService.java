@@ -34,6 +34,15 @@ public class UserService {
     return userRepository.findAll();
   }
 
+  public String getUserRole(String email) {
+    Optional<User> possibleUser = userRepository.findByEmail(email);
+    if (!possibleUser.isEmpty()) {
+      return possibleUser.get().getEmail();
+    } else {
+      return "User does not exist";
+    }
+  }
+
   @Transactional
   public String deleteUser(User user) {
     if (userRepository.existsByEmail(user.getEmail())) {
