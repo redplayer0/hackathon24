@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.example.payments.entities.User;
+import com.example.payments.entities.dtos.UserLoginDTO;
 import com.example.payments.services.UserService;
 import com.fasterxml.jackson.core.Base64Variant;
 
@@ -38,10 +39,10 @@ public class UserController {
   }
 
   @PostMapping("login")
-  public ResponseEntity<String> loginUser(HttpServletRequest req, @Valid @RequestBody User user) {
+  public ResponseEntity<String> loginUser(@Valid @RequestBody UserLoginDTO user) {
     if (userService.authenticateUser(user)) {
-      String emailRole = user.getEmail() + ":" + user.getRole();
-      String cookie = Base64.getEncoder().encodeToString(emailRole.getBytes());
+      String emailPassword = user.getEmail() + ":" + user.getPassword();
+      String cookie = Base64.getEncoder().encodeToString(emailPassword.getBytes());
       return ResponseEntity.ok()
           .header("cookie", cookie)
           .body("Login Succesful");

@@ -7,6 +7,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.payments.entities.User;
+import com.example.payments.entities.dtos.UserLoginDTO;
 import com.example.payments.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
@@ -34,7 +35,7 @@ public class UserService {
     return userRepository.findAll();
   }
 
-  public boolean authenticateUser(User user) {
+  public boolean authenticateUser(UserLoginDTO user) {
     if (!userRepository.findByEmailAndPassword(user.getEmail(), user.getPassword()).isEmpty()) {
       return true;
     } else {

@@ -1,6 +1,7 @@
 
 package com.example.payments;
 
+import java.nio.charset.StandardCharsets;
 import java.util.Base64;
 import java.util.Optional;
 
@@ -19,9 +20,10 @@ public class AuthService {
   @Autowired
   private UserRepository userRepository;
 
-  public Optional<User> getUser(@RequestHeader("cookie") String cookie) {
-
-    String[] emailRole = Base64.getDecoder().decode(cookie).toString().split(":");
-    return userRepository.findByEmailAndPassword(emailRole[0], emailRole[1]);
+  public Optional<User> getUser(@RequestHeader("Cookie") String cookie) {
+    byte[] rawCookie = Base64.getDecoder().decode(cookie);
+    String[] emailPassword = new String(rawCookie, StandardCharsets.UTF_8).split(":");
+    System.out.println(emailPassword.toString());
+    return userRepository.findByEmailAndPassword(emailPassword[0], emailPassword[1]);
   }
 }

@@ -1,10 +1,7 @@
 package com.example.payments.entities;
 
-import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.Id;
-import jakarta.persistence.JoinColumn;
-import jakarta.persistence.OneToOne;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -24,21 +21,17 @@ import lombok.Setter;
 @Builder
 @Setter
 @Getter
-public class Customer {
+public class Customer extends AppUser {
   @Id
   private Integer vat;
-  private String firstName;
-  private String lastName;
+  private String firstname;
+  private String lastname;
   private String birthday;
-  private String birthAddress;
-  private Long weeklyTranfer;
-  private Long weeklyLimit;
+  private String birthaddress;
+  private Long weeklytransfer;
+  private Long weeklylimit;
   private Long balance;
-  private String creationDate;
-  private String deletionDate;
-  private Integer userId;
-
-  // @OneToOne(cascade = CascadeType.ALL)
-  // @JoinColumn(name="user_id", referencedColumnName = "id")
-  // public User user;
+  private String creationdate;
+  private String deletiondate;
+  private Integer userid;
 }
