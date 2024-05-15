@@ -4,3 +4,9 @@ spring:
     driver-class-name: org.sqlite.JDBC
   jpa.show-sql: true
   jpa.properties.hibernate.dialect: org.hibernate.community.dialect.SQLiteDialect
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"
