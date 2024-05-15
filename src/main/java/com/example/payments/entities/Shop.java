@@ -19,12 +19,12 @@ import lombok.NoArgsConstructor;
 @Builder
 public class Shop extends AppUser {
   @Id
-  private int vat;
+  private Integer vat;
   private String name;
   private String address;
   private String creationdate;
   private String deletiondate;
-  private long balance ;
+  private Long balance ;
   private String picture;
-  private int userid;
+  private Integer userid;
 }

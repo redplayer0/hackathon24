@@ -6,6 +6,9 @@ import org.springframework.stereotype.Service;
 import com.example.payments.entities.Shop;
 import com.example.payments.entities.dtos.ShopCreateDTO;
 import com.example.payments.repositories.ShopRepository;
+
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import jakarta.transaction.Transactional;
@@ -43,6 +46,7 @@ public class ShopService {
           .balance(0L)
           .picture(shopDto.getPicture())
           .userid(user_id)
+          .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
           .build();
       System.out.println(shop.toString());
       shopRepository.save(shop);

@@ -25,5 +25,5 @@ public class PaypalIban {
   private String enddate;
   private String approved;
   private String bankname;
-  private int vat ;
+  private Integer vat ;
 }

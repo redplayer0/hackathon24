@@ -7,7 +7,7 @@ import lombok.Data;
  */
 @Data
 public class ShopCreateDTO {
-  private int vat;
+  private Integer vat;
   private String name;
   private String address;
   private String picture;

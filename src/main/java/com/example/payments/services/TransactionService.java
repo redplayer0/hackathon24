@@ -1,6 +1,8 @@
 
 package com.example.payments.services;
 
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,7 +11,6 @@ import org.springframework.stereotype.Service;
 
 import com.example.payments.entities.ProviderTransaction;
 import com.example.payments.entities.Transaction;
-import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.TransactionCreateDTO;
 import com.example.payments.repositories.CustomerRepository;
 import com.example.payments.repositories.PaypalIbanRepository;
@@ -61,6 +62,7 @@ public class TransactionService {
         .customeraccount(customeraccount)
         .provideriban(providerIban)
         .amount(amount)
+        .datetime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         .build();
     System.out.println(transaction.toString());
     providerTransactionRepository.save(transaction);
@@ -78,6 +80,7 @@ public class TransactionService {
         .sourceaccount(sourceaccount)
         .targetaccount(targetaccount)
         .amount(transactionDto.getAmount())
+        .datetime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         .build();
     createProviderTransaction(transactionDto.getAmount(), sourceaccount);
     transactionRepository.save(transaction);

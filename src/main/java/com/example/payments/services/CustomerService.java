@@ -1,6 +1,7 @@
 package com.example.payments.services;
 
-import java.util.function.ToLongBiFunction;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -38,6 +39,7 @@ public class CustomerService {
           .birthaddress(customerDto.getBirthaddress())
           .weeklytransfer(customerDto.getWeeklytransfer())
           .weeklylimit(customerDto.getWeeklylimit())
+          .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
           .balance(0L)
           .userid(user_id)
           .build();

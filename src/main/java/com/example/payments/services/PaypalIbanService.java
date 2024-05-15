@@ -1,11 +1,11 @@
 package com.example.payments.services;
 
-import java.awt.PageAttributes.PrintQualityType;
+import java.time.LocalDateTime;
+import java.time.format.DateTimeFormatter;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import com.example.payments.AuthService;
 import com.example.payments.entities.PaypalIban;
 import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.PaypalIbanCreateDTO;
@@ -49,6 +49,8 @@ public class PaypalIbanService {
           .ispaypal(paypalibanDto.getIspaypal())
           .bankname(paypalibanDto.getBankname())
           .vat(vat)
+          .startdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+          .approved("pending")
           .build();
       System.out.println(paypaliban.toString());
       paypalIbanRepository.save(paypaliban);
