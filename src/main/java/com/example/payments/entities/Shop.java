@@ -6,22 +6,18 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
+/**
+ * Shop
+ */
 @Entity
 @Data
 @AllArgsConstructor
 @Table(name = "SHOPS")
 @NoArgsConstructor
 @Builder
-@Setter
-@Getter
-/**
- * Shop
- */
-public class Shop {
+public class Shop extends AppUser {
   @Id
   private int vat;
   private String name;
@@ -29,6 +25,6 @@ public class Shop {
   private String creationdate;
   private String deletiondate;
   private long balance ;
+  private String picture;
   private int userid;
-	
 }

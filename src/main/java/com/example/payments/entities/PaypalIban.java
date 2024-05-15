@@ -6,27 +6,24 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
-@Entity
-@Data
-@AllArgsConstructor
-@Table(name = "SHOPS")
-@NoArgsConstructor
-@Builder
-@Setter
-@Getter
 /**
  * PaypalIban
  */
+@Entity
+@Data
+@AllArgsConstructor
+@Table(name = "PAYPAL_IBANS")
+@NoArgsConstructor
+@Builder
 public class PaypalIban {
   @Id
-  private String iban;
-  private int vat ;
+  private String account;
+  private String ispaypal;
   private String startdate;
   private String enddate;
   private String approved;
   private String bankname;
+  private int vat ;
 }
