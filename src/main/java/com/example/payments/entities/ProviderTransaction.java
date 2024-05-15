@@ -1,3 +1,4 @@
+
 package com.example.payments.entities;
 
 import jakarta.persistence.Entity;
@@ -8,26 +9,23 @@ import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
-import lombok.Getter;
 import lombok.NoArgsConstructor;
-import lombok.Setter;
 
 /**
- * Transaction
+ * ProviderTransaction
  */
 @Entity
 @Data
 @AllArgsConstructor
-@Table(name = "TRANSACTIONS")
+@Table(name = "PROVIDER_TRANSACTIONS")
 @NoArgsConstructor
 @Builder
-public class Transaction {
+public class ProviderTransaction {
   @Id
   @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private int transactionid;
-  private String sourceaccount;
-  private String targetaccount;
+  private Integer transactionsid;
+  private String customeraccount;
+  private String provideriban;
   private Long amount;
   private String datetime;
 }
-
