@@ -1,6 +1,8 @@
 package com.example.payments.entities;
 
 import jakarta.persistence.Entity;
+import jakarta.persistence.GeneratedValue;
+import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -10,23 +12,21 @@ import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;
 
-@Entity
-@Data
-@AllArgsConstructor
-@Table(name = "SHOPS")
-@NoArgsConstructor
-@Builder
-@Setter
-@Getter
 /**
  * Transaction
  */
+@Entity
+@Data
+@AllArgsConstructor
+@Table(name = "TRANSACTIONS")
+@NoArgsConstructor
+@Builder
 public class Transaction {
-
   @Id
+  @GeneratedValue(strategy = GenerationType.IDENTITY)
   private int transactionid;
-  private String sourceibanpaypal;
-  private String targetiban;
+  private String sourceaccount;
+  private String targetaccount;
   private long amount;
   private String datetime;
 }

@@ -1,5 +1,7 @@
 package com.example.payments.services;
 
+import java.awt.PageAttributes.PrintQualityType;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -36,7 +38,7 @@ public class PaypalIbanService {
   public String createPaypalIban(PaypalIbanCreateDTO paypalibanDto, Integer user_id, User user) {
     String role = user.getRole();
     Integer vat;
-    if (role == "customer") {
+    if (role.equals("customer")) {
       vat = customerRepository.findByUserid(user_id).get().getVat();
     } else {
       vat = shopRepository.findByUserid(user_id).get().getVat();

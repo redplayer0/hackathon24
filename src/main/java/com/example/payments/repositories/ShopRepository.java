@@ -15,6 +15,7 @@ import com.example.payments.entities.Shop;
 public interface ShopRepository extends JpaRepository<Shop, Integer> {
   public boolean existsByVat(Integer vat);
   public Optional<Shop> findByVat(Integer vat);
-  public Optional<Shop> findByUserid(Integer Userid);
+  public Optional<Shop> findByName(String name);
+  public Optional<Shop> findByUserid(Integer userid);
   public List<Shop> findAll();
 }
