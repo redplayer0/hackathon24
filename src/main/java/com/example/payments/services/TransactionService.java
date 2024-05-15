@@ -66,8 +66,11 @@ public class TransactionService {
       if (!optionalProTrans.isEmpty()) {
         ProviderTransaction providerTransaction = optionalProTrans.get();
         amountForProviderBalance += providerTransaction.getAmount();
+        transaction.setStatus("recieved");
+        transactionRepository.save(transaction);
       }
     }
+    providerService.modifyBalance(amountForProviderBalance);
   }
 
   @Transactional
