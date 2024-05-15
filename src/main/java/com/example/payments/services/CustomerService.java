@@ -2,12 +2,14 @@ package com.example.payments.services;
 
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.payments.entities.Customer;
 import com.example.payments.entities.dtos.CustomerCreateDTO;
+import com.example.payments.entities.dtos.CustomerLimitsBalanceDTO;
 import com.example.payments.repositories.CustomerRepository;
 
 import jakarta.transaction.Transactional;
@@ -24,6 +26,20 @@ public class CustomerService {
   public void modifyBalance(Customer customer, Long amount) {
     customer.setBalance(customer.getBalance() + amount);
     customerRepository.save(customer);
+  }
+
+  public CustomerLimitsBalanceDTO sendLimitsBalance(Integer user_id) {
+    Optional<Customer> possibleCustomer = customerRepository.findByUserid(user_id);
+    if (!possibleCustomer.isEmpty()) {
+      Customer customer = possibleCustomer.get();
+      CustomerLimitsBalanceDTO response = CustomerLimitsBalanceDTO.builder()
+        .balance(customer.getBalance())
+        .weeklylimit(customer.getWeeklylimit())
+        .weeklytransfer(customer.getWeeklytransfer())
+        .build();
+      return response;
+    }
+    return null;
   }
 
   @Transactional

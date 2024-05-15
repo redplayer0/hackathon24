@@ -46,7 +46,7 @@ public class UserService {
   public String getUserRole(String email) {
     Optional<User> possibleUser = userRepository.findByEmail(email);
     if (!possibleUser.isEmpty()) {
-      return possibleUser.get().getEmail();
+      return possibleUser.get().getRole();
     } else {
       return "User does not exist";
     }

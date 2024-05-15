@@ -16,6 +16,7 @@ import com.example.payments.AuthService;
 import com.example.payments.entities.Customer;
 import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.CustomerCreateDTO;
+import com.example.payments.entities.dtos.CustomerLimitsBalanceDTO;
 import com.example.payments.services.CustomerService;
 
 /**
@@ -32,6 +33,16 @@ public class CustomerController {
   // public Customer getCustomer(@PathVariable(value = "customer")) {
 
   // }
+
+  @GetMapping("customer_balance")
+  public CustomerLimitsBalanceDTO customerBalance(@RequestHeader("Cookie") String cookie) {
+    Optional<User> possibleUser = authService.getUser(cookie);
+    if (!possibleUser.isEmpty()) {
+      return customerService.sendLimitsBalance(possibleUser.get().getId());
+    }
+    return null;
+  }
+
   @PostMapping("create_customer")
   public String createCustomer(@RequestHeader("Cookie") String cookie, @RequestBody CustomerCreateDTO customerDTO) {
     Optional<User> possibleUser = authService.getUser(cookie);

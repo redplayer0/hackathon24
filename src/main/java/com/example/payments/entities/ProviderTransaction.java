@@ -22,8 +22,7 @@ import lombok.NoArgsConstructor;
 @Builder
 public class ProviderTransaction {
   @Id
-  @GeneratedValue(strategy = GenerationType.IDENTITY)
-  private Integer transactionsid;
+  private Integer transactionid;
   private String customeraccount;
   private String provideriban;
   private Long amount;

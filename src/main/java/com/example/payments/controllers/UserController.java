@@ -16,6 +16,7 @@ import com.example.payments.entities.Provider;
 import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.UserLoginDTO;
 import com.example.payments.repositories.ProviderRepository;
+import com.example.payments.repositories.UserRepository;
 import com.example.payments.services.ProviderService;
 import com.example.payments.services.UserService;
 import com.fasterxml.jackson.core.Base64Variant;
@@ -53,8 +54,10 @@ public class UserController {
     if (userService.authenticateUser(user)) {
       String emailPassword = user.getEmail() + ":" + user.getPassword();
       String cookie = Base64.getEncoder().encodeToString(emailPassword.getBytes());
+      String role = userService.getUserRole(user.getEmail());
       return ResponseEntity.ok()
-          .header("cookie", cookie)
+          .header("Cookie", cookie)
+          .header("Role", role)
           .body("Login Succesful");
 
     } else {

@@ -4,6 +4,7 @@ package com.example.payments.services;
 import java.time.LocalDateTime;
 import java.time.format.DateTimeFormatter;
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
@@ -34,6 +35,8 @@ public class TransactionService {
   @Autowired
   private PaypalIbanRepository paypalIbanRepository;
   @Autowired
+  private ProviderService providerService;
+  @Autowired
   private ProviderTransactionRepository providerTransactionRepository;
 
   @Value("${PROVIDER_IBAN}")
@@ -51,14 +54,26 @@ public class TransactionService {
     return transactionRepository.findAllBySourceaccountAndTargetaccount(sourceaccount, targetaccount);
   }
 
-
   public List<ProviderTransaction> findAllByCustomeraccount(String customeraccount) {
     return providerTransactionRepository.findAllByCustomeraccount(customeraccount);
   }
 
+  public void processTransactions() {
+    List<Transaction> transactions = transactionRepository.findAllByStatusIs("pending");
+    Long amountForProviderBalance = 0L;
+    for (Transaction transaction : transactions) {
+      Optional<ProviderTransaction> optionalProTrans = providerTransactionRepository.findById(transaction.getTransactionid());
+      if (!optionalProTrans.isEmpty()) {
+        ProviderTransaction providerTransaction = optionalProTrans.get();
+        amountForProviderBalance += providerTransaction.getAmount();
+      }
+    }
+  }
+
   @Transactional
-  public String createProviderTransaction(Long amount, String customeraccount) {
+  public String createProviderTransaction(Long amount, String customeraccount, Integer transactionid) {
     ProviderTransaction transaction = ProviderTransaction.builder()
+        .transactionid(transactionid)
         .customeraccount(customeraccount)
         .provideriban(providerIban)
         .amount(amount)
@@ -80,9 +95,10 @@ public class TransactionService {
         .sourceaccount(sourceaccount)
         .targetaccount(targetaccount)
         .amount(transactionDto.getAmount())
+        .status("pending")
         .datetime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         .build();
-    createProviderTransaction(transactionDto.getAmount(), sourceaccount);
+    createProviderTransaction(transactionDto.getAmount(), sourceaccount, transaction.getTransactionid());
     transactionRepository.save(transaction);
     return "transaction record created successfully.";
   }

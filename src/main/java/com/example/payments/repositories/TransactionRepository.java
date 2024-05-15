@@ -13,8 +13,9 @@ import com.example.payments.entities.Transaction;
 @Repository
 public interface TransactionRepository extends JpaRepository<Transaction, Integer> {
   public List<Transaction> findAllBySourceaccount(String sourceaccount);
-
   public List<Transaction> findAllByTargetaccount(String targetaccount);
+  public List<Transaction> findAllBySourceaccountAndTargetaccount(String sourceaccount, String targetaccount);
+  public List<Transaction> findAllByStatusIs(String status);
 
-  public List<Transaction> findAllBySourceaccountAndTargetaccount(String sourceaccount, String targetaccountn);
+
 }
