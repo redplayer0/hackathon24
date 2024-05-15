@@ -26,6 +26,11 @@ public class ShopService {
     return shopRepository.findAll();
   }
 
+  public void modifyBalance(Shop shop, Long amount) {
+    shop.setBalance(shop.getBalance() + amount);
+    shopRepository.save(shop);
+  }
+
   @Transactional
   public String createShop(ShopCreateDTO shopDto, Integer user_id) {
     System.out.println("CHECK shop DTO");

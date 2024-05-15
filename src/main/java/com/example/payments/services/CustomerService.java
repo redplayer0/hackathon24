@@ -20,6 +20,11 @@ public class CustomerService {
     return customerRepository.existsByVat(vat);
   }
 
+  public void modifyBalance(Customer customer, Long amount) {
+    customer.setBalance(customer.getBalance() + amount);
+    customerRepository.save(customer);
+  }
+
   @Transactional
   public String createCustomer(CustomerCreateDTO customerDto, Integer user_id) {
     System.out.println("CHECK CUSTOMER DTO");

@@ -12,11 +12,15 @@ import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.example.payments.entities.Provider;
 import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.UserLoginDTO;
+import com.example.payments.repositories.ProviderRepository;
+import com.example.payments.services.ProviderService;
 import com.example.payments.services.UserService;
 import com.fasterxml.jackson.core.Base64Variant;
 
+import ch.qos.logback.core.joran.conditional.PropertyWrapperForScripts;
 import jakarta.servlet.http.HttpServletRequest;
 import jakarta.validation.Valid;
 
@@ -27,10 +31,16 @@ import jakarta.validation.Valid;
 public class UserController {
   @Autowired
   private UserService userService;
+  @Autowired
+  private ProviderRepository providerRepository;
+  @Autowired
+  private ProviderService providerService;
 
-  @GetMapping("info")
+  @GetMapping("test")
   public String info() {
-    return "The application is up...";
+    providerService.modifyBalance(-10L);
+    Provider provider = providerRepository.getProvider();
+    return provider.toString();
   }
 
   @PostMapping("signup")
