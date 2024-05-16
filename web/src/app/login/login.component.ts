@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
 import { Router } from '@angular/router';
+import { UserService } from '../services/userService';
 
 @Component({
   selector: 'app-login',
@@ -7,10 +8,9 @@ import { Router } from '@angular/router';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router:Router){
-    
+  constructor(private router: Router, private userService: UserService) {
   }
-  protected  succesfulLogIn(){
+  protected succesfulLogIn() {
     this.router.navigate(['homepage']);
   }
 }
