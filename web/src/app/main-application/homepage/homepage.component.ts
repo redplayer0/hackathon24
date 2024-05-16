@@ -10,6 +10,7 @@ import { IUser, IUserLogin, UserRegister } from '../../models/user';
 export class HomepageComponent {
   users: IUser[] = [];
   userRegister = new UserRegister()
+  shops: string[] = []
   submitted = false;
 
 
@@ -19,6 +20,8 @@ export class HomepageComponent {
       "email": "another1",
       "password": "test"
     }))
+
+    this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
   }
 
   onSubmit() { 

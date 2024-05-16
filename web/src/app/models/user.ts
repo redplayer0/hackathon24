@@ -17,3 +17,14 @@ export interface IUserLogin {
   email: string;
   password: string;
 }
+
+export interface Shop {
+  vat: number
+  name: string
+  address: string
+  creationdate: string
+  deletiondate: string
+  balance : number
+  picture: string
+  userid: number
+}
