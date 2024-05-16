@@ -8,13 +8,11 @@ import { UserService } from '../../services/userService';
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent implements OnInit {
+export class HomepageComponent {
   users: User[] = [];
-  constructor(private userService: UserService) { this.getUsers()}
 
-  ngOnInit(): void {
+  constructor(private userService: UserService) {
     this.getUsers()
-    setTimeout(() => console.log(this.users), 3000)
   }
 
   getUsers(): void {

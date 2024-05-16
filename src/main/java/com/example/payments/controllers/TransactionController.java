@@ -26,16 +26,17 @@ public class TransactionController {
   private AuthService authService;
 
   @PostMapping("create_transaction")
-  public ResponseEntity<String> createTransaction(@RequestHeader("Cookie") String cookie, @RequestBody TransactionCreateDTO transactionDTO) {
+  public ResponseEntity<String> createTransaction(@RequestHeader("Cookie") String cookie,
+      @RequestBody TransactionCreateDTO transactionDTO) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (!possibleUser.isEmpty()) {
       if (transactionService.createTransaction(transactionDTO, possibleUser.get().getId())) {
         return ResponseEntity.ok("Transaction created");
       } else {
-        return new ResponseEntity<>("Cannot exceed weekly limit",HttpStatus.BAD_REQUEST);
+        return new ResponseEntity<>("Cannot exceed weekly limit", HttpStatus.BAD_REQUEST);
       }
     } else {
-      return new ResponseEntity<>("User not found",HttpStatus.BAD_REQUEST);
+      return new ResponseEntity<>("User not found", HttpStatus.BAD_REQUEST);
     }
   }
 }

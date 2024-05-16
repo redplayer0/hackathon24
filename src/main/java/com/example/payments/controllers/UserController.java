@@ -22,6 +22,7 @@ import com.example.payments.repositories.UserRepository;
 import com.example.payments.services.ProviderService;
 import com.example.payments.services.UserService;
 import com.fasterxml.jackson.core.Base64Variant;
+import org.springframework.http.MediaType;
 
 import ch.qos.logback.core.joran.conditional.PropertyWrapperForScripts;
 import jakarta.servlet.http.HttpServletRequest;
@@ -67,7 +68,7 @@ public class UserController {
     }
   }
 
-  @GetMapping("read_users")
+  @GetMapping(value = "read_users")
   public ResponseEntity<List<User>> readUsers() {
     return ResponseEntity.ok(userService.readUsers());
   }
