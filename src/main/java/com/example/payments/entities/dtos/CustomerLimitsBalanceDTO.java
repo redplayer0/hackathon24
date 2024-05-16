@@ -9,7 +9,7 @@ import lombok.Data;
 @Data
 @Builder
 public class CustomerLimitsBalanceDTO {
-  private Long weeklytransfer;
-  private Long weeklylimit;
-  private Long balance;
+  private Double weeklytransfer;
+  private Double weeklylimit;
+  private Double balance;
 }

@@ -25,6 +25,6 @@ public class ProviderTransaction {
   private Integer transactionid;
   private String customeraccount;
   private String provideriban;
-  private Long amount;
+  private Double amount;
   private String datetime;
 }

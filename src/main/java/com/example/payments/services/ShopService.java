@@ -29,7 +29,7 @@ public class ShopService {
     return shopRepository.findAll();
   }
 
-  public void modifyBalance(Shop shop, Long amount) {
+  public void modifyBalance(Shop shop, Double amount) {
     shop.setBalance(shop.getBalance() + amount);
     shopRepository.save(shop);
   }
@@ -43,7 +43,7 @@ public class ShopService {
           .vat(shopDto.getVat())
           .name(shopDto.getName())
           .address(shopDto.getAddress())
-          .balance(0L)
+          .balance(0.0)
           .picture(shopDto.getPicture())
           .userid(user_id)
           .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))

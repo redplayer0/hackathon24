@@ -12,6 +12,6 @@ public class CustomerCreateDTO {
   private String lastname;
   private String birthday;
   private String birthaddress;
-  private Long weeklytransfer;
-  private Long weeklylimit;
+  private Double weeklytransfer;
+  private Double weeklylimit;
 }

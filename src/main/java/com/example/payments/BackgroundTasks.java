@@ -18,6 +18,7 @@ public class BackgroundTasks {
 
   @Scheduled(cron = "0 */3 * * * *")
   public void weekly() {
+    transactionService.processPendingTransactions();
     long now = System.currentTimeMillis() / 1000;
     System.out.println(
         "schedule tasks using cron jobs - " + now);

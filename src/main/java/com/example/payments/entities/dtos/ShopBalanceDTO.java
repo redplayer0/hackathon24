@@ -9,5 +9,5 @@ import lombok.Builder;
 @Data
 @Builder
 public class ShopBalanceDTO {
-  private Long balance;
+  private Double balance;
 }

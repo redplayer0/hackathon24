@@ -28,7 +28,7 @@ public class Transaction {
   private String sourceaccount;
   private String targetaccount;
   private String status;
-  private Long amount;
+  private Double amount;
   private String datetime;
 }
 

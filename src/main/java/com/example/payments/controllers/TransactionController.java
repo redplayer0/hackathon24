@@ -3,6 +3,8 @@ package com.example.payments.controllers;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestHeader;
@@ -24,15 +26,16 @@ public class TransactionController {
   private AuthService authService;
 
   @PostMapping("create_transaction")
-  public String createPaypalIban(@RequestHeader("Cookie") String cookie, @RequestBody TransactionCreateDTO transactionDTO) {
+  public ResponseEntity<String> createTransaction(@RequestHeader("Cookie") String cookie, @RequestBody TransactionCreateDTO transactionDTO) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (!possibleUser.isEmpty()) {
-      transactionService.createTransaction(transactionDTO, possibleUser.get().getId());
-      return "Successful";
+      if (transactionService.createTransaction(transactionDTO, possibleUser.get().getId())) {
+        return ResponseEntity.ok("Transaction created");
+      } else {
+        return new ResponseEntity<>("Cannot exceed weekly limit",HttpStatus.BAD_REQUEST);
+      }
     } else {
-      return "An error occured";
+      return new ResponseEntity<>("User not found",HttpStatus.BAD_REQUEST);
     }
   }
-
-	
 }

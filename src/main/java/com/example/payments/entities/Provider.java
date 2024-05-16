@@ -24,5 +24,5 @@ public class Provider {
   private Integer vat;
   private String companyname;
   private String address;
-  private Long balance;
+  private Double balance;
 }

@@ -5,6 +5,7 @@ import java.util.Base64;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -39,7 +40,7 @@ public class UserController {
 
   @GetMapping("test")
   public String info() {
-    providerService.modifyBalance(-10L);
+    providerService.modifyBalance(-10.0);
     Provider provider = providerRepository.getProvider();
     return provider.toString();
   }
@@ -67,8 +68,8 @@ public class UserController {
   }
 
   @GetMapping("read_users")
-  public List<User> readUsers() {
-    return userService.readUsers();
+  public ResponseEntity<List<User>> readUsers() {
+    return ResponseEntity.ok(userService.readUsers());
   }
 
   // @PutMapping("update_user")

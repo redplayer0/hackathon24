@@ -8,5 +8,5 @@ import lombok.Data;
 @Data
 public class TransactionCreateDTO {
   private String shopname;
-  private long amount;
+  private Double amount;
 }

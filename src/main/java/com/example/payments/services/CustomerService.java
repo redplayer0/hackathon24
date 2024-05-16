@@ -23,7 +23,7 @@ public class CustomerService {
     return customerRepository.existsByVat(vat);
   }
 
-  public void modifyBalance(Customer customer, Long amount) {
+  public void modifyBalance(Customer customer, Double amount) {
     customer.setBalance(customer.getBalance() + amount);
     customerRepository.save(customer);
   }
@@ -56,7 +56,7 @@ public class CustomerService {
           .weeklytransfer(customerDto.getWeeklytransfer())
           .weeklylimit(customerDto.getWeeklylimit())
           .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-          .balance(0L)
+          .balance(0.0)
           .userid(user_id)
           .build();
       System.out.println(customer.toString());

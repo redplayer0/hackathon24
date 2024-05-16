@@ -11,7 +11,7 @@ public class ProviderService {
   @Autowired
   private ProviderRepository providerRepository;
 
-  public void modifyBalance(Long amount) {
+  public void modifyBalance(Double amount) {
     Provider provider = providerRepository.getProvider();
     provider.setBalance(provider.getBalance() + amount);
     providerRepository.save(provider);

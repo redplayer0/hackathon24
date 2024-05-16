@@ -27,9 +27,9 @@ public class Customer extends AppUser {
   private String lastname;
   private String birthday;
   private String birthaddress;
-  private Long weeklytransfer;
-  private Long weeklylimit;
-  private Long balance;
+  private Double weeklytransfer;
+  private Double weeklylimit;
+  private Double balance;
   private String creationdate;
   private String deletiondate;
   private Integer userid;

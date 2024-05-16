@@ -58,14 +58,18 @@ public class TransactionService {
     return providerTransactionRepository.findAllByCustomeraccount(customeraccount);
   }
 
-  public void processTransactions() {
+  // Here is the business logic for the first background process
+  public void processPendingTransactions() {
     List<Transaction> transactions = transactionRepository.findAllByStatusIs("pending");
-    Long amountForProviderBalance = 0L;
+    Double amountForProviderBalance = 0.0;
     for (Transaction transaction : transactions) {
       Optional<ProviderTransaction> optionalProTrans = providerTransactionRepository.findById(transaction.getTransactionid());
       if (!optionalProTrans.isEmpty()) {
         ProviderTransaction providerTransaction = optionalProTrans.get();
         amountForProviderBalance += providerTransaction.getAmount();
+        if (transaction.getAmount() > 5) {
+          amountForProviderBalance += 0.5;
+        }
         transaction.setStatus("recieved");
         transactionRepository.save(transaction);
       }
@@ -74,7 +78,7 @@ public class TransactionService {
   }
 
   @Transactional
-  public String createProviderTransaction(Long amount, String customeraccount, Integer transactionid) {
+  public String createProviderTransaction(Double amount, String customeraccount, Integer transactionid) {
     ProviderTransaction transaction = ProviderTransaction.builder()
         .transactionid(transactionid)
         .customeraccount(customeraccount)
@@ -88,7 +92,7 @@ public class TransactionService {
   }
 
   @Transactional
-  public String createTransaction(TransactionCreateDTO transactionDto, Integer user_id) {
+  public boolean createTransaction(TransactionCreateDTO transactionDto, Integer user_id) {
     Integer sourcevat = customerRepository.findByUserid(user_id).get().getVat();
     String sourceaccount = paypalIbanRepository.findByVat(sourcevat).get().getAccount();
     Integer shopvat = shopRepository.findByName(transactionDto.getShopname()).get().getVat();
@@ -103,6 +107,6 @@ public class TransactionService {
         .build();
     createProviderTransaction(transactionDto.getAmount(), sourceaccount, transaction.getTransactionid());
     transactionRepository.save(transaction);
-    return "transaction record created successfully.";
+    return true;
   }
 }

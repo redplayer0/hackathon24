@@ -24,7 +24,7 @@ public class Shop extends AppUser {
   private String address;
   private String creationdate;
   private String deletiondate;
-  private Long balance ;
+  private Double balance ;
   private String picture;
   private Integer userid;
 }

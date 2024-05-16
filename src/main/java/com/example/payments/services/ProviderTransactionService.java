@@ -32,7 +32,7 @@ public class ProviderTransactionService {
   }
 
   @Transactional
-  public String createProviderTransaction(Long amount, String customeraccount) {
+  public String createProviderTransaction(Double amount, String customeraccount) {
     ProviderTransaction transaction = ProviderTransaction.builder()
         .customeraccount(customeraccount)
         .provideriban(providerIban)
