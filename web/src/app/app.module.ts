@@ -9,15 +9,17 @@ import { ReusableComponent } from './main-application/reusable/reusable.componen
 import { HomepageComponent } from './main-application/homepage/homepage.component';
 import { MainApplicationComponent } from './main-application/main-application.component';
 import { ChangingComponent } from './main-application/changing/changing.component';
-import{BrowserAnimationsModule} from'@angular/platform-browser/animations';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { DropdownModule } from 'primeng/dropdown';
 import { DataViewModule } from 'primeng/dataview';
-import { FormBuilder, FormGroup, FormsModule, Validators} from '@angular/forms';
+import { FormBuilder, FormGroup, FormsModule, Validators } from '@angular/forms';
 import { CommonModule } from '@angular/common';
 import { ButtonModule } from 'primeng/button';
 import { TableModule } from 'primeng/table';
 import { TransactionhistoryComponent } from './main-application/transactionhistory/transactionhistory.component';
-import { ShopsearchComponent } from './main-application/shopsearch/shopsearch.component'; 
+import { ShopsearchComponent } from './main-application/shopsearch/shopsearch.component';
+import { HttpClientModule } from '@angular/common/http';
+import { UserService } from './services/userService';
 
 @NgModule({
   declarations: [
@@ -40,9 +42,10 @@ import { ShopsearchComponent } from './main-application/shopsearch/shopsearch.co
     DataViewModule,
     FormsModule,
     CommonModule,
-    ButtonModule
+    ButtonModule,
+    HttpClientModule,
   ],
-  providers: [],
+  providers: [UserService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
