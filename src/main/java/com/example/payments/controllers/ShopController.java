@@ -33,12 +33,7 @@ public class ShopController {
   }
 
   @PostMapping("create_shop")
-  public String createShop(@RequestHeader("Cookie") String cookie, @RequestBody ShopCreateDTO shopDTO) {
-    Optional<User> possibleUser = authService.getUser(cookie);
-    if (!possibleUser.isEmpty()) {
-      return shopService.createShop(shopDTO, possibleUser.get().getId());
-    } else {
-      return "An error occured";
-    }
+  public String createShop(@RequestBody ShopCreateDTO shopDTO) {
+    return shopService.createShop(shopDTO);
   }
 }

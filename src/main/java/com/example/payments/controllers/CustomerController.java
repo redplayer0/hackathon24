@@ -44,12 +44,7 @@ public class CustomerController {
   }
 
   @PostMapping("create_customer")
-  public String createCustomer(@RequestHeader("Cookie") String cookie, @RequestBody CustomerCreateDTO customerDTO) {
-    Optional<User> possibleUser = authService.getUser(cookie);
-    if (!possibleUser.isEmpty()) {
-      return customerService.createCustomer(customerDTO, possibleUser.get().getId());
-    } else {
-      return "An error occured";
-    }
+  public String createCustomer(@RequestBody CustomerCreateDTO customerDTO) {
+    return customerService.createCustomer(customerDTO);
   }
 }

@@ -1,18 +1,16 @@
 import {
   Paginator,
   PaginatorModule
-} from "./chunk-T2DMT6EH.js";
-import "./chunk-4X4AKNLC.js";
-import "./chunk-IEEQVHIL.js";
-import "./chunk-3HVQ5Q6Y.js";
-import "./chunk-GXGE33UC.js";
-import "./chunk-ZJEN7W6E.js";
+} from "./chunk-R6I5KHM6.js";
+import "./chunk-IE6UKEB3.js";
+import "./chunk-SUNMQJKJ.js";
 import {
   SpinnerIcon
-} from "./chunk-T7Y7HXII.js";
+} from "./chunk-NRCFIV23.js";
+import "./chunk-UD76ICRY.js";
 import {
   BaseIcon
-} from "./chunk-WDJ4KGDO.js";
+} from "./chunk-W2LCHJYO.js";
 import {
   FilterService,
   Footer,
@@ -23,7 +21,9 @@ import {
   SharedModule,
   TranslationKeys,
   UniqueComponentId
-} from "./chunk-3VF3PVXT.js";
+} from "./chunk-UJIY34XA.js";
+import "./chunk-DTGO4G7U.js";
+import "./chunk-7L55CRJW.js";
 import {
   CommonModule,
   NgClass,
@@ -31,7 +31,7 @@ import {
   NgStyle,
   NgTemplateOutlet,
   SlicePipe
-} from "./chunk-46VL4GRD.js";
+} from "./chunk-33SBBZCQ.js";
 import {
   ChangeDetectionStrategy,
   ChangeDetectorRef,
@@ -85,7 +85,7 @@ import {
   ɵɵtemplate,
   ɵɵtext,
   ɵɵtextInterpolate1
-} from "./chunk-ORL24GRQ.js";
+} from "./chunk-5SGPZOL3.js";
 
 // node_modules/primeng/fesm2022/primeng-icons-thlarge.mjs
 var ThLargeIcon = class _ThLargeIcon extends BaseIcon {
