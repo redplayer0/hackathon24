@@ -1,7 +1,5 @@
-import { HttpClient } from '@angular/common/http';
-import { Component, Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
-import { User } from '../../models/user'; 
+import { Component, Injectable, OnInit } from '@angular/core';
+import { User } from '../../models/user';
 import { UserService } from '../../services/userService';
 
 
@@ -10,19 +8,17 @@ import { UserService } from '../../services/userService';
   templateUrl: './homepage.component.html',
   styleUrl: './homepage.component.css'
 })
-export class HomepageComponent {
+export class HomepageComponent implements OnInit {
   users: User[] = [];
-  constructor(private userService: UserService) { }
+  constructor(private userService: UserService) { this.getUsers()}
 
   ngOnInit(): void {
-    console.log("HI")
     this.getUsers()
-    console.log(this.users)
+    setTimeout(() => console.log(this.users), 3000)
   }
 
   getUsers(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
   }
-
 }
