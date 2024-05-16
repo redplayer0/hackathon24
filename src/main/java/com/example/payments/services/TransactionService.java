@@ -58,6 +58,21 @@ public class TransactionService {
     return providerTransactionRepository.findAllByCustomeraccount(customeraccount);
   }
 
+
+  public List<Transaction> getTransactions(Integer user_id) {
+    Integer vat;
+    if (customerRepository.existsById(user_id)) {
+      vat = customerRepository.findById(user_id).get().getVat();
+    } else {
+      vat = shopRepository.findById(user_id).get().getVat();
+    }
+    System.out.println(vat.toString());
+    String account = paypalIbanRepository.findByVat(vat).get().getAccount();
+    System.out.println(account);
+    return transactionRepository.findAllBySourceaccountOrTargetaccount(account, account);
+  }
+  
+
   // Here is the business logic for the first background process
   public void processPendingTransactions() {
     List<Transaction> transactions = transactionRepository.findAllByStatusIs("pending");

@@ -13,6 +13,7 @@ import com.example.payments.entities.Shop;
  */
 @Repository
 public interface ShopRepository extends JpaRepository<Shop, Integer> {
+  public boolean existsByUserid(Integer UserId);
   public boolean existsByVat(Integer vat);
   public Optional<Shop> findByVat(Integer vat);
   public Optional<Shop> findByName(String name);
