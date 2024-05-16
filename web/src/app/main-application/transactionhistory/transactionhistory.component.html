@@ -17,9 +17,9 @@
         </ng-template>
         <ng-template pTemplate="body" let-transactions>
             <tr>
-                <td>{{ transactions.shopName }}</td>
+                <td>{{ transactions.name }}</td>
                 <td>{{ transactions.amount }}</td>
-                <td>{{ transactions.date | date: 'MM/dd/yyyy' }}</td>
+                <td>{{ transactions.datetime | date: 'MM/dd/yyyy' }}</td>
                 <td>{{ transactions.status }}</td>
             </tr>
         </ng-template>
