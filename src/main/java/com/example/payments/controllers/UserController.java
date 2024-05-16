@@ -60,7 +60,6 @@ public class UserController {
           .header("Cookie", cookie)
           .header("Role", role)
           .body("Login Succesful");
-
     } else {
       return ResponseEntity.ok()
           .body("Wrong credentials");

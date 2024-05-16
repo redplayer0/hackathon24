@@ -105,8 +105,10 @@ public class TransactionService {
         .status("pending")
         .datetime(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         .build();
-    createProviderTransaction(transactionDto.getAmount(), sourceaccount, transaction.getTransactionid());
+
+    // transactionRepository.findAllByStatusIsAndSourceaccountIs("pending", sourceaccount)
     transactionRepository.save(transaction);
+    createProviderTransaction(transactionDto.getAmount(), sourceaccount, transaction.getTransactionid());
     return true;
   }
 }

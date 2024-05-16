@@ -1,0 +1,40 @@
+<link rel="stylesheet" type="text/css" href="reusable.component.css">
+<header class="fixed-header">
+<div class="topbar" >
+    <div class="topbar-left">
+      <p-button styleClass="custom-button" (click)="sidebarVisible = true" icon="pi pi-ellipsis-v" ></p-button>
+      <h1>App Name</h1>
+    </div>
+    <div class="topbar-right" >
+      <ul>
+        <li><label for="balance">Balance</label></li>
+        <li><label for="WeeklyLimit">Weekly Limit</label></li>
+        <br>
+        <li><label for="balanceNumber" id="WeeklyBalance" style="padding-left: 10px;padding-right: 10px;">{{dynamicBalance}} €</label></li>
+        <li><label for="WeeklyLimitNumber" id="WeeklyLimit" style="padding-left: 30px;padding-right: 10px;" >{{dynamicLimit}} €</label></li>
+      </ul>
+    </div>
+</div>
+</header>
+<div class="card flex justify-content-center">
+  <p-sidebar [(visible)]="sidebarVisible" position="left" styleClass="w-30rem">
+    <ng-template pTemplate="header"><h3>Heading</h3></ng-template>
+      <ng-template pTemplate="content">
+          <span >
+          <i class="pi pi-history"></i>
+          </span>
+          <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" (click)="sidebarVisible = false" routerLink="/transactionshistory">History</a>
+          <br>
+          <span >
+          <i class="pi pi-shopping-cart"></i>
+          </span>
+          <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" (click)="sidebarVisible = false" routerLink="/shops">Shops</a>
+          <br>
+          <span >
+          <i class="pi pi-home"></i>
+          </span>
+          <a class="font-medium no-underline ml-2 text-blue-500 cursor-pointer" (click)="sidebarVisible = false" routerLink="/homepage">homepage</a>
+      </ng-template>
+  </p-sidebar>
+</div>
+

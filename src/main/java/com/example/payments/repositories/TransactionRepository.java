@@ -16,6 +16,5 @@ public interface TransactionRepository extends JpaRepository<Transaction, Intege
   public List<Transaction> findAllByTargetaccount(String targetaccount);
   public List<Transaction> findAllBySourceaccountAndTargetaccount(String sourceaccount, String targetaccount);
   public List<Transaction> findAllByStatusIs(String status);
-
-
+  public List<Transaction> findAllByStatusIsAndSourceaccountIs(String status, String sourceaccount);
 }
