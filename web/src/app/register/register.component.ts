@@ -1,9 +1,10 @@
 import { Component, ViewChild } from '@angular/core';
 import { Dropdown } from 'primeng/dropdown'; 
+import { IUser, IUserLogin, UserLogIn,CustomerSingUp,ShopperSingUp } from '../models/models'; 
 import { ButtonModule } from 'primeng/button';
 import { FormBuilder, FormGroup, FormsModule, Validators} from '@angular/forms';
 import { InputText, InputTextModule } from 'primeng/inputtext';
-
+import { UserService } from '../services/userService';
 
 @Component({
   selector: 'app-register',
@@ -14,36 +15,47 @@ import { InputText, InputTextModule } from 'primeng/inputtext';
 export class RegisterComponent {
   @ViewChild('myDropdown') myDropdown: Dropdown | undefined;
   dropdownOptions: any[] = [
-    { label: 'Payer', value: 'payer' },
-    { label: 'Shopper', value: 'shopper' }
+    { label: 'Customer', value: 'customer' },
+    { label: 'Shop', value: 'shop' }
   ];
 
-  selectedOption: string = 'payer';
+  selectedOption: string = 'customer';
   showAdditionalShoperInputs: boolean = false;
   showAdditionalPayerInputs : boolean = true;
   firstname : string | undefined;
-
+  submitted = false;
+  customerSignUp = new CustomerSingUp()
+  constructor(private userService: UserService) {
+    
+  }
 
   onOptionChange(event: any) {
     this.selectedOption = event.value;
-    if (event.value === 'shopper') {
+    if (event.value === 'shop') {
       this.showAdditionalShoperInputs = true;
       this.showAdditionalPayerInputs = false;
+      this.customerSignUp.role='shop';
     } 
-    if(event.value==='payer'){
+    if(event.value==='customer'){
       this.showAdditionalShoperInputs = false;
       this.showAdditionalPayerInputs=true;
+      this.customerSignUp.role='customer';
     }
   }
 
+  signUpUser():void{
+    this.userService.customerSignUp(this.customerSignUp).subscribe()
+  }
+  onSubmit() { 
+    this.submitted = true; 
+    this.signUpUser()
+  }
+
   submitForm() {
-    if (this.firstname) {
-      // Input is not null, proceed with your logic
-      console.log('Input is not null:', this.firstname);
-    } else  {
-      // Input is null
-      console.log('Input is null');
-    }
+
+    this.submitted = true; 
+    
+    this.signUpUser();
   }
 
 }

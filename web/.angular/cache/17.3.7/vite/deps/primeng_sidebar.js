@@ -1,6 +1,11 @@
 import {
   TimesIcon
-} from "./chunk-IEEQVHIL.js";
+} from "./chunk-UKFSMSDE.js";
+import {
+  DomHandler,
+  Ripple,
+  RippleModule
+} from "./chunk-ULFVO7GK.js";
 import {
   animate,
   animation,
@@ -9,11 +14,6 @@ import {
   trigger,
   useAnimation
 } from "./chunk-GXGE33UC.js";
-import {
-  DomHandler,
-  Ripple,
-  RippleModule
-} from "./chunk-WDJ4KGDO.js";
 import {
   PrimeNGConfig,
   PrimeTemplate,

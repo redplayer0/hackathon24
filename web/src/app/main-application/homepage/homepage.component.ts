@@ -1,6 +1,6 @@
 import { Component, Injectable, OnInit } from '@angular/core';
 import { UserService } from '../../services/userService';
-import { IUser, IUserLogin, UserRegister } from '../../models/user'; 
+import { IUser, IUserLogin, UserLogIn } from '../../models/models'; 
 
 @Component({
   selector: 'app-homepage',
@@ -9,13 +9,14 @@ import { IUser, IUserLogin, UserRegister } from '../../models/user';
 })
 export class HomepageComponent {
   users: IUser[] = [];
-  userRegister = new UserRegister()
+  userLogIn = new UserLogIn()
   shops: string[] = []
   submitted = false;
 
 
   constructor(private userService: UserService) {
     this.getUsers()
+    //do we ned this ;
     console.log(this.userService.loginUser({
       "email": "another1",
       "password": "test"
@@ -35,6 +36,6 @@ export class HomepageComponent {
   }
 
   registerUser(): void {
-    this.userService.registerUser(this.userRegister).subscribe(user => console.log(user))
+    this.userService.logInUser(this.userLogIn).subscribe(user => console.log(user))
   }
 }

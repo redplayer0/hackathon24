@@ -1,4 +1,7 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/userService';
+import { IUser, IUserLogin, UserLogIn,TransactionOfUser } from '../../models/models';
+
 interface Transaction {
   shopName: string;
   amount: number;
@@ -11,28 +14,20 @@ interface Transaction {
   styleUrl: './transactionhistory.component.css'
 })
 export class TransactionhistoryComponent {
-  transactions: Transaction[];
+  transactions: TransactionOfUser[] = [];
 
 
-  constructor() {
-    this.transactions = [
-      { shopName: 'Shop 1', amount: 100, date: '01/01/2024', status: 'Completed' },
-      { shopName: 'Shop 2', amount: 200, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 3', amount: 150, date: '01/01/2024', status: 'Completed' },
-      { shopName: 'Shop 4', amount: 300, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 1', amount: 100, date: '02/02/2024', status: 'Completed' },
-      { shopName: 'Shop 2', amount: 200, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 3', amount: 150, date: '02/03/2024', status: 'Completed' },
-      { shopName: 'Shop 4', amount: 300, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 1', amount: 100, date: '02/02/2024', status: 'Completed' },
-      { shopName: 'Shop 2', amount: 200, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 3', amount: 150, date: '02/02/2024', status: 'Completed' },
-      { shopName: 'Shop 4', amount: 300, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 1', amount: 100, date: '02/02/2024', status: 'Completed' },
-      { shopName: 'Shop 2', amount: 200, date: '02/02/2024', status: 'Pending' },
-      { shopName: 'Shop 3', amount: 150, date: '02/02/2024', status: 'Completed' },
-      { shopName: 'Shop 4', amount: 300, date: '02/02/2024', status: 'Pending' }
-    ];
+  constructor(private userService: UserService) {
+    this.getTransactions();
   }
+
+  getTransactions(): void {
+    this.userService.getTransactions()
+      .subscribe(trans => this.transactions = trans);
+  }
+
+
+
+   
 
 }

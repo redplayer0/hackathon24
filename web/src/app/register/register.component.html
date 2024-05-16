@@ -1,4 +1,4 @@
-<link rel="stylesheet" type="text/css" href="register.component.css" />
+<!-- <link rel="stylesheet" type="text/css" href="register.component.css" />
 
 <nav>
     <div style="display: grid; place-items: center;">
@@ -12,97 +12,121 @@
             <p-dropdown #myDropdown [options]="dropdownOptions"  (ngModelChange)="onOptionChange($event)" autoDisplayFirst></p-dropdown>
         </div>
         <br>
-            <!-- Additional inputs for shopper -->
-            <div *ngIf="myDropdown.value === 'shopper'">
-            <!-- Add your additional inputs here -->
-                <label for="Shopname" class="block text-900 font-medium mb-2">Shop Name</label>
+        <form  #registerForm="ngForm">
+            Additional inputs for shopper
+            <div *ngIf="myDropdown.value === 'shop'">
+             Add your additional inputs here 
+                <label for="name" class="block text-900 font-medium mb-2">Shop Name</label>
                 <div class="p-inputgroup">
                     <span class="p-inputgroup-addon">
                         <i class="pi pi-shopping-bag"></i>
                     </span>
-                    <input class="full-width-input" pInputText id="Shopname" type="text" placeholder="Shop Name"  style="width: 100%;">
+                    <input  required class="full-width-input" pInputText id="name" type="text" placeholder="Shop Name"  style="width: 100%;">
                 </div>
             </div>
-            <!-- Additional inputs for payer -->
-            <div *ngIf="myDropdown.value === 'payer'">
-                <!-- Add your additional inputs here -->
-                    <label for="firstName" class="block text-900 font-medium mb-2">First Name</label>
+            Additional inputs for payer 
+            <div *ngIf="myDropdown.value === 'customer'">
+            Add your additional inputs here
+                    <label for="firstname" class="block text-900 font-medium mb-2">First Name</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">
                             <i class="pi pi-user"></i>
                         </span>
-                        <input class="full-width-input" pInputText  id="firstName" type="text" placeholder="First Name" >
+                        <input  required [(ngModel)]="customerSignUp.firstname"  class="full-width-input"  pInputText  id="firstname" type="text" placeholder="First Name" >
                     </div>
-                    <label for="lastName" class="block text-900 font-medium mb-2">Last Name</label>
+                    <label for="lastname" class="block text-900 font-medium mb-2">Last Name</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">
                             <i class="pi pi-user"></i>
                         </span>
-                        <input class="full-width-input"  id="lastName" type="text" placeholder="Last Name" pInputText >
+                        <input  required [(ngModel)]="customerSignUp.lastname" class="full-width-input"  id="lastname" type="text" placeholder="Last Name" pInputText >
                     </div>
                     <label for="birthday" class="block text-900 font-medium mb-2">BirthDay</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">
                             <i class="pi pi-calendar"></i>
                         </span>
-                        <input class="full-width-input"  id="birthday" type="text" placeholder="BirthDay" pInputText>
+                        <input  required [(ngModel)]="customerSignUp.birthday" class="full-width-input"  id="birthday" type="text" placeholder="BirthDay" pInputText>
                     </div>
-                    <label for="weeklyLimit" class="block text-900 font-medium mb-2">Weekly Limit</label>
+                    <label for="weeklylimit" class="block text-900 font-medium mb-2">Weekly Limit</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">
                             <i class="pi pi-money-bill"></i>
                         </span>
-                        <input class="full-width-input"  id="weeklyLimit" type="text" placeholder="Weekly Limit" pInputText>
+                        <input  required [(ngModel)]="customerSignUp.weeklylimit" class="full-width-input"  id="weeklylimit" type="text" placeholder="Weekly Limit" pInputText>
                     </div>
-                    <label for="weeklyTransfer" class="block text-900 font-medium mb-2">Weekly Transfer</label>
+                    <label for="weeklytransfer" class="block text-900 font-medium mb-2">Weekly Transfer</label>
                     <div class="p-inputgroup">
                         <span class="p-inputgroup-addon">
                             <i class="pi pi-money-bill"></i>
                         </span>
-                        <input class="full-width-input"  id="weeklyTransfer" type="text" placeholder="Weekly Transfer" pInputText>
+                        <input required [(ngModel)]="customerSignUp.weeklytransfer" class="full-width-input"  id="weeklytransfer" type="text" placeholder="Weekly Transfer" pInputText>
                     </div>
             </div>
-        <label for="VatCode" class="block text-900 font-medium mb-2">Vat Code</label>
+            
+        <label for="vat" class="block text-900 font-medium mb-2">Vat Code</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-info-circle"></i>
             </span>
-            <input class="full-width-input"  id="VatCode" type="text" placeholder="Vat Code" pInputText >
+            <input required [(ngModel)]="customerSignUp.vat" class="full-width-input"  id="vat" type="text" placeholder="Vat Code" pInputText >
         </div>
-        <label for="birthAddress" class="block text-900 font-medium mb-2">Birth Address</label>
+        <label for="birthaddress" class="block text-900 font-medium mb-2">Birth Address</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-home"></i>
             </span>
-            <input class="full-width-input"  id="birthAddress" type="text" placeholder="Address" pInputText >
+            <input required [(ngModel)]="customerSignUp.birthaddress" class="full-width-input"  id="birthaddress" type="text" placeholder="Address" pInputText >
         </div>
-        
-        <label for="Iban/PayPal" class="block text-900 font-medium mb-2">Iban or PayPal</label>
+         <label for="Iban/PayPal" class="block text-900 font-medium mb-2">Iban or PayPal</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-info-circle"></i>
             </span>
             <input class="full-width-input"  id="Iban/PayPal" type="text" placeholder="GR8949023590239034" pInputText >
         </div>
-        <label for="email1" class="block text-900 font-medium mb-2">Email</label>
+       
+        <label for="email" class="block text-900 font-medium mb-2">Email</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-user"></i>
             </span>
-            <input class="full-width-input"  id="email1" type="text" placeholder="Email address" pInputText >
+            <input required [(ngModel)]="customerSignUp.email" class="full-width-input"  id="email" type="text" placeholder="Email address" pInputText >
         </div>
-        <label for="password1" class="block text-900 font-medium mb-2">Password</label>
+        <label for="password" class="block text-900 font-medium mb-2">Password</label>
         <div class="p-inputgroup">
             <span class="p-inputgroup-addon">
                 <i class="pi pi-user"></i>
             </span>
-            <input class="full-width-input"  id="password1" type="password" placeholder="Password" pInputText >
+            <input required [(ngModel)]="customerSignUp.birthaddress" class="full-width-input"  id="password" type="password" placeholder="Password" pInputText >
         </div>
+
         <br>
         <br>
         <button (click)="submitForm()"type="button" class="connectButton" routerLink="">Submit</button>
+    </form>
     </div>
 
 </div>
 </div>
-</nav>
+</nav> -->
+<div class="container">
+    <div [hidden]="submitted">
+      <form (ngSubmit)="onSubmit()" #homepageForm="ngForm">
+        <div class="form-group">
+          <label for="email">Email</label>
+          <input type="text" class="form-control" id="email" required [(ngModel)]="customerSignUp.email" name="email">
+        </div>
+  
+        <div class="form-group">
+          <label for="password">Password</label>
+          <input type="password" class="form-control" id="password" [(ngModel)]="customerSignUp.password" name="password">
+        </div>
+        <div class="form-group">
+            <label for="password"></label>
+            <input type="password" class="form-control" id="password" [(ngModel)]="customerSignUp.password" name="password">
+          </div>
+        <button type="submit" class="btn btn-success" [disabled]="">Submit</button>
+      </form>
+    </div>
+  </div>
