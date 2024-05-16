@@ -62,6 +62,7 @@ public class CustomerService {
       .email(customerDto.getEmail())
       .password(customerDto.getPassword())
       .role(customerDto.getRole())
+      .build();
     userRepository.save(user);
     Customer customer = Customer.builder()
       .vat(customerDto.getVat())

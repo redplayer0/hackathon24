@@ -39,7 +39,7 @@ public class ShopService {
   }
 
   @Transactional
-  public String createShop(ShopCreateDTO shopDto, Integer user_id) {
+  public String createShop(ShopCreateDTO shopDto) {
     System.out.println("CHECK shop DTO");
     System.out.println(shopDto.toString());
     if (shopRepository.existsByVat(shopDto.getVat())) {
@@ -49,9 +49,10 @@ public class ShopService {
       return "User already exists";
     }
     User user = User.builder()
-      .email(customerDto.getEmail())
-      .password(customerDto.getPassword())
-      .role(customerDto.getRole())
+      .email(shopDto.getEmail())
+      .password(shopDto.getPassword())
+      .role(shopDto.getRole())
+      .build();
     userRepository.save(user);
     Shop shop = Shop.builder()
         .vat(shopDto.getVat())
@@ -59,10 +60,11 @@ public class ShopService {
         .address(shopDto.getAddress())
         .balance(0.0)
         .picture(shopDto.getPicture())
-        .userid(user_id)
+        .userid(user.getId())
         .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
         .build();
     shopRepository.save(shop);
+    return "Shop record created successfully.";
   }
 
 }
