@@ -1,4 +1,5 @@
 export class UserLogIn {
+
   constructor(
     public email: string = "",
     public password: string = "",
@@ -44,10 +45,12 @@ export class ShopperSingUp{
   ){}
 }
 export interface TransactionOfUser{
-  name: string,
+  transactionid: number,
+  sourceaccount: string,
+  targetaccount: string,
+  status:string,
   amount: number,
-  datetime: string,
-  status:string
+  datetime: string
 }
 
 

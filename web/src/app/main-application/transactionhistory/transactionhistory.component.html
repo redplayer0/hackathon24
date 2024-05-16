@@ -6,12 +6,7 @@
             <tr>
                 <th id="firstCol">Shop Name</th>
                 <th id="secondCol">Amount</th>
-                <th style="min-width:10rem">
-                    <div class="flex align-items-center">
-                        Date
-                        <p-columnFilter type="date" field="date" display="menu"></p-columnFilter>
-                    </div>
-                </th>
+                <th id="thirdCol"> Date</th>
                 <th id="fourthCol">Status</th>
             </tr>
         </ng-template>
@@ -20,7 +15,7 @@
                 <td>{{ transactions.name }}</td>
                 <td>{{ transactions.amount }}</td>
                 <td>{{ transactions.datetime | date: 'MM/dd/yyyy' }}</td>
-                <td>{{ transactions.status }}</td>
+                <td>{{ transactions.status }}</td>  
             </tr>
         </ng-template>
     </p-table>

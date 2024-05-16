@@ -10,6 +10,7 @@ import { IUser, IUserLogin, UserLogIn,TransactionOfUser } from '../../models/mod
 })
 export class TransactionhistoryComponent {
   transactions: TransactionOfUser[] = [];
+  //filteredTransactions: TransactionOfUser[]=[];
 
 
   constructor(private userService: UserService) {

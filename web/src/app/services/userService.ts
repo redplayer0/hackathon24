@@ -1,6 +1,6 @@
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map } from "rxjs";
-import { HttpClient } from "@angular/common/http";
+import { HttpClient, HttpHeaders } from "@angular/common/http";
 import { Shop, IUser, IUserLogin, UserLogIn,CustomerSingUp, TransactionOfUser } from '../models/models';
 
 @Injectable({
@@ -28,10 +28,13 @@ export class UserService {
   getShopsNames(): Observable<Shop[]> {
     return this.http.get<Shop[]>(this.DEPLOY_URL + "shops")
   }
-  getTransactions():Observable<TransactionOfUser[]>{
-    return this.http.get<TransactionOfUser[]>(this.DEPLOY_URL + "transactions")
+  getTransactions():Observable<TransactionOfUser[]> {
+    // localStorage.setItem("mycookie", "d3d3OnRlc3Q=")
+    const headers = new HttpHeaders({
+      'mycookie': `${localStorage.getItem("mycookie")}`
+    });
+    return this.http.get<TransactionOfUser[]>(this.DEPLOY_URL + "transactions", { headers: headers })
   }
-  
 
 }
 
