@@ -7,19 +7,20 @@ import { IUser, IUserLogin, UserRegister } from '../models/user';
   providedIn: "root"
 })
 export class UserService {
+  readonly DEPLOY_URL = "http://192.168.138.148:8080"
   readonly ROOT_URL = "http://localhost:8080/";
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUser[]> {
-    return this.http.get<IUser[]>(this.ROOT_URL + "read_users");
+    return this.http.get<IUser[]>(this.DEPLOY_URL + "read_users");
   }
 
   loginUser(userLogin: IUserLogin) {
-    return this.http.post(this.ROOT_URL + "login", userLogin)
+    return this.http.post(this.DEPLOY_URL + "login", userLogin)
   }
 
   registerUser(userRegister: UserRegister): Observable<UserRegister> {
-    return this.http.post<UserRegister>(this.ROOT_URL + "signup", userRegister)
+    return this.http.post<UserRegister>(this.DEPLOY_URL + "signup", userRegister)
   }
 
 }
