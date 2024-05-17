@@ -7,7 +7,7 @@ import { Shop, IUser, IUserLogin, UserLogIn, CustomerSingUp, TransactionOfUser, 
   providedIn: "root"
 })
 export class UserService {
-  readonly DEPLOY_URL = "http://192.168.138.148:8080/"
+  readonly DEPLOY_URL = "http://192.168.140.148:8080/"
   constructor(private http: HttpClient) { }
 
   getUsers(): Observable<IUser[]> {
@@ -41,7 +41,7 @@ export class UserService {
     return this.http.get<Shop[]>(this.DEPLOY_URL + "shops",{ headers: headers })
   }
   getTransactions(): Observable<TransactionOfUser[]> {
-    localStorage.setItem("mycookie", "d3d3OnRlc3Q=")
+    localStorage.setItem("mycookie", "dGVzdGN1c3RvbWVyQG1haWwuY29tOmN1c3RvbWVy")
     const headers = new HttpHeaders({
       'mycookie': `${localStorage.getItem("mycookie")}`
     });

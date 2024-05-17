@@ -31,7 +31,7 @@ export class LoginComponent {
   getUsers(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
-      this.router.navigate(['/homepage']);
+      
   }
   
 

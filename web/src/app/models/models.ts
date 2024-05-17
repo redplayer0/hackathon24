@@ -25,11 +25,11 @@ export class CustomerSingUp{
   constructor(
     public email: string = "",
     public password: string = "",
-    public role: string = "",
+    public role: string = "customer",
     public vat: number = 0,
     public firstname: string  = "",
     public lastname:string = "",
-    public birthday:string = "",
+    public birthday:string = "1990-12-12",
     public birthaddress:string = "",
     public weeklytransfer:number = 0,
     public weeklylimit:number = 0,
