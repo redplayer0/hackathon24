@@ -16,26 +16,45 @@ export class UserService {
 
   //i changed this 
   logInUser(userLogIn: UserLogIn): Observable<HttpResponse<UserLogIn>> {
+
     return this.http.post<UserLogIn>(this.DEPLOY_URL + "signup", userLogIn, { observe: 'response' })
   }
 
   customerSignUp(customerSignUp: CustomerSingUp): Observable<CustomerSingUp> {
-    return this.http.post<CustomerSingUp>(this.DEPLOY_URL + "create_customer", customerSignUp)
+    const headers = new HttpHeaders({
+      'mycookie': `${localStorage.getItem("mycookie")}`
+    });
+
+    return this.http.post<CustomerSingUp>(this.DEPLOY_URL + "create_customer", customerSignUp, { headers: headers })
   }
   shopSignUp(shopSignUp: ShopSingUp): Observable<ShopSingUp> {
-    return this.http.post<ShopSingUp>(this.DEPLOY_URL + "create_shop", shopSignUp)
+    const headers = new HttpHeaders({
+      'mycookie': `${localStorage.getItem("mycookie")}`
+    });
+    return this.http.post<ShopSingUp>(this.DEPLOY_URL + "create_shop",shopSignUp,{ headers: headers })
   }
 
   getShopsNames(): Observable<Shop[]> {
-    return this.http.get<Shop[]>(this.DEPLOY_URL + "shops")
+    const headers = new HttpHeaders({
+      'mycookie': `${localStorage.getItem("mycookie")}`
+    });
+    return this.http.get<Shop[]>(this.DEPLOY_URL + "shops",{ headers: headers })
   }
   getTransactions(): Observable<TransactionOfUser[]> {
-    // localStorage.setItem("mycookie", "d3d3OnRlc3Q=")
+    localStorage.setItem("mycookie", "d3d3OnRlc3Q=")
     const headers = new HttpHeaders({
       'mycookie': `${localStorage.getItem("mycookie")}`
     });
     return this.http.get<TransactionOfUser[]>(this.DEPLOY_URL + "transactions", { headers: headers })
   }
+
+  
+  // fetchshopName(name: string) {
+  //   if (!this.) {
+  //     this.hero = this.heroService.getHeroById(id);
+  //   }
+  //   return this.hero;
+  // }
 
 
 }

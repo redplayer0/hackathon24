@@ -1,4 +1,6 @@
 import { Component } from '@angular/core';
+import { UserService } from '../../services/userService';
+import { CustomerSingUp } from '../../models/models';
 
 @Component({
   selector: 'app-reusable',
@@ -9,10 +11,15 @@ export class ReusableComponent {
   sidebarVisible: boolean = false;
   dynamicBalance: string = "0";
   dynamicLimit: string = "0";
+  customer :CustomerSingUp[]=[];
+  constructor(private userService: UserService) {
+    
+  }
 
   ngOnInit(): void {
     setTimeout(() => {
       //get from api new balance and Limit
+
       this.dynamicBalance = "New Balance";
       this.dynamicLimit= "New Limit";
     }, 2000);

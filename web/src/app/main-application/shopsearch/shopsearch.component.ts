@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { IUser, IUserLogin, UserLogIn } from '../../models/models'; 
+import { IUser, IUserLogin, Shop, UserLogIn } from '../../models/models'; 
 import { FormBuilder, FormGroup, FormsModule, NgForm, Validators } from '@angular/forms';
 import { UserService } from '../../services/userService';
 import { NgModule } from '@angular/core';
@@ -15,16 +15,20 @@ import { MainApplicationComponent } from '../main-application.component';
   styleUrl: './shopsearch.component.css'
 })
 export class ShopsearchComponent {
-
+  shopget: Shop []=[];
   shops: string[] = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry'];
   filteredItems: string[]=[];
   
 
   constructor(private userService: UserService) {
-    
-    //this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
+    this.userService.getShopsNames().subscribe(shopget => this.shopget = shopget);
+    this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
     this.filteredItems = this.shops;
   }
+  ngOnInit() {
+    this.shopget;
+  }
+
   search(searchValue: string): void {
     //console.log(searchValue);
     if (!searchValue) {
@@ -36,7 +40,10 @@ export class ShopsearchComponent {
       
     );
     console.log(searchValue);
-  
+    
+    
+
+
   }
   
   
