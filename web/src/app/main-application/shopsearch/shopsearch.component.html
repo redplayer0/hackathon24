@@ -1,3 +1,15 @@
 <!--<input type="text" placeholder="Filterby name" #filter>
 <button class="primary" type="button" (click)="filterResults(filter.value)">Search</button>
 <app-shopsearch *ngFor="let Shop of filteredShopList" [Shop]="Shop"></app-shopsearch>-->
+<div class="container">
+
+
+    <div class="form-group">
+    <input type="text" #searchInput (input)="search(searchInput.value)" placeholder="Search...">
+    </div>
+
+    <ul>
+    <li *ngFor="let item of filteredItems">{{ item }}</li>
+    </ul>
+
+</div>

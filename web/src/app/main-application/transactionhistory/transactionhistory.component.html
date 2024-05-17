@@ -4,7 +4,8 @@
     <p-table [value]="transactions">
         <ng-template pTemplate="header" style="position:sticky;">
             <tr>
-                <th id="firstCol">Shop Name</th>
+                <th id="firstCol">Source Account</th>
+                <th id="firstC">Target Account</th>
                 <th id="secondCol">Amount</th>
                 <th id="thirdCol"> Date</th>
                 <th id="fourthCol">Status</th>
@@ -12,7 +13,8 @@
         </ng-template>
         <ng-template pTemplate="body" let-transactions>
             <tr>
-                <td>{{ transactions.name }}</td>
+                <td>{{ transactions.sourceaccount }}</td>
+                <td>{{ transactions.targetaccount }}</td>
                 <td>{{ transactions.amount }}</td>
                 <td>{{ transactions.datetime | date: 'MM/dd/yyyy' }}</td>
                 <td>{{ transactions.status }}</td>  

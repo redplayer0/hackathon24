@@ -7,6 +7,7 @@ export class UserLogIn {
   ) {}
 }
 
+
 export interface IUser {
   id: number;
   email: string;
@@ -52,6 +53,8 @@ export interface TransactionOfUser{
   amount: number,
   datetime: string
 }
+
+
 
 
 export interface Shop {

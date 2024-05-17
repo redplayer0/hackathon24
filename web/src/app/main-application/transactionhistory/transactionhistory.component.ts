@@ -10,7 +10,7 @@ import { IUser, IUserLogin, UserLogIn,TransactionOfUser } from '../../models/mod
 })
 export class TransactionhistoryComponent {
   transactions: TransactionOfUser[] = [];
-  //filteredTransactions: TransactionOfUser[]=[];
+ // filteredTransactions: TransactionOfUser[]=[];
 
 
   constructor(private userService: UserService) {
@@ -19,7 +19,7 @@ export class TransactionhistoryComponent {
 
   getTransactions(): void {
     this.userService.getTransactions()
-      .subscribe(trans => this.transactions = trans);
+      .subscribe(trans => this.transactions  = trans);
   }
 
 

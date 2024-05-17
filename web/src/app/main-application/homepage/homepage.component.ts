@@ -16,11 +16,6 @@ export class HomepageComponent {
 
   constructor(private userService: UserService) {
     this.getUsers()
-    //do we ned this ;
-    console.log(this.userService.loginUser({
-      "email": "another1",
-      "password": "test"
-    }))
 
     this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
   }
@@ -36,6 +31,10 @@ export class HomepageComponent {
   }
 
   registerUser(): void {
-    this.userService.logInUser(this.userLogIn).subscribe(user => console.log(user))
+    this.userService.logInUser(this.userLogIn).subscribe(
+      resp => {
+        localStorage.setItem("mycookie", `${resp.headers.get("mycookie")}`)
+      }
+    )
   }
 }
