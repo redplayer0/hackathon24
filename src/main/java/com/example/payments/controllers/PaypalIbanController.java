@@ -27,7 +27,7 @@ public class PaypalIbanController {
   private AuthService authService;
 
   @PostMapping("create_paypaliban")
-  public String createPaypalIban(@RequestHeader("Cookie") String cookie, @RequestBody PaypalIbanCreateDTO paypalIbanDTO) {
+  public String createPaypalIban(@RequestHeader("mycookie") String cookie, @RequestBody PaypalIbanCreateDTO paypalIbanDTO) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (!possibleUser.isEmpty()) {
       return paypalIbanService.createPaypalIban(paypalIbanDTO, possibleUser.get().getId(), possibleUser.get());

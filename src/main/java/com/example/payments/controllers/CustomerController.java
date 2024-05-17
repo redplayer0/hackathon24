@@ -35,7 +35,7 @@ public class CustomerController {
   // }
 
   @GetMapping("customer_balance")
-  public CustomerLimitsBalanceDTO customerBalance(@RequestHeader("Cookie") String cookie) {
+  public CustomerLimitsBalanceDTO customerBalance(@RequestHeader("mycookie") String cookie) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (!possibleUser.isEmpty()) {
       return customerService.sendLimitsBalance(possibleUser.get().getId());

@@ -61,8 +61,8 @@ public class UserController {
       String cookie = Base64.getEncoder().encodeToString(emailPassword.getBytes());
       String role = userService.getUserRole(user.getEmail());
       return ResponseEntity.ok()
-          .header("Cookie", cookie)
-          .header("Role", role)
+          .header("mycookie", cookie)
+          .header("myrole", role)
           .body("Login Succesful");
     } else {
       return ResponseEntity.ok()

@@ -16,20 +16,22 @@ public class BackgroundTasks {
   @Autowired
   private TransactionService transactionService;
 
-  @Scheduled(cron = "0 */3 * * * *")
+  @Scheduled(cron = "0 */1 * * * *")
+  // @Scheduled(cron = "*/1 * * * * *")
   public void weekly() {
     transactionService.processPendingTransactions();
     long now = System.currentTimeMillis() / 1000;
     System.out.println(
-        "schedule tasks using cron jobs - " + now);
+        "Weekly Background process" + now);
   }
 
-  @Scheduled(cron = "0 */6 * * * *")
+  @Scheduled(cron = "0 */2  * * * *")
+  // @Scheduled(cron = "*/2 * * * * *")
   public void monthly() {
-
+    transactionService.processRecievedTransactions();
     long now = System.currentTimeMillis() / 1000;
     System.out.println(
-        "schedule tasks using cron jobs - " + now);
+        "Monthly Background process" + now);
   }
 
 }

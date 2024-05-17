@@ -3,6 +3,8 @@ package com.example.payments.controllers;
 import java.util.List;
 import java.util.Optional;
 
+import javax.print.event.PrintJobListener;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -29,7 +31,7 @@ public class TransactionController {
   private AuthService authService;
 
   @GetMapping("transactions")
-  public ResponseEntity<List<Transaction>> getTransactions(@RequestHeader("Cookie") String cookie) {
+  public ResponseEntity<List<Transaction>> getTransactions(@RequestHeader("mycookie") String cookie) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (possibleUser.isEmpty()) {
       return new ResponseEntity<>(HttpStatus.BAD_REQUEST);
@@ -38,7 +40,7 @@ public class TransactionController {
   }
 
   @PostMapping("create_transaction")
-  public ResponseEntity<String> createTransaction(@RequestHeader("Cookie") String cookie,
+  public ResponseEntity<String> createTransaction(@RequestHeader("mycookie") String cookie,
       @RequestBody TransactionCreateDTO transactionDTO) {
     Optional<User> possibleUser = authService.getUser(cookie);
     if (!possibleUser.isEmpty()) {
