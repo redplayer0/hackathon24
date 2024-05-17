@@ -20,8 +20,8 @@ export class ReusableComponent {
     setTimeout(() => {
       //get from api new balance and Limit
 
-      this.dynamicBalance = "New Balance";
-      this.dynamicLimit= "New Limit";
+      this.dynamicBalance = "100";
+      this.dynamicLimit= "100";
     }, 2000);
   }
 

@@ -17,7 +17,7 @@ export class UserService {
   //i changed this 
   logInUser(userLogIn: UserLogIn): Observable<HttpResponse<UserLogIn>> {
 
-    return this.http.post<UserLogIn>(this.DEPLOY_URL + "signup", userLogIn, { observe: 'response' })
+    return this.http.post<UserLogIn>(this.DEPLOY_URL + "login", userLogIn, { observe: 'response' })
   }
 
   customerSignUp(customerSignUp: CustomerSingUp): Observable<CustomerSingUp> {
@@ -41,7 +41,7 @@ export class UserService {
     return this.http.get<Shop[]>(this.DEPLOY_URL + "shops",{ headers: headers })
   }
   getTransactions(): Observable<TransactionOfUser[]> {
-    localStorage.setItem("mycookie", "dGVzdGN1c3RvbWVyQG1haWwuY29tOmN1c3RvbWVy")
+    //localStorage.setItem("mycookie", "dGVzdGN1c3RvbWVyQG1haWwuY29tOmN1c3RvbWVy")
     const headers = new HttpHeaders({
       'mycookie': `${localStorage.getItem("mycookie")}`
     });
