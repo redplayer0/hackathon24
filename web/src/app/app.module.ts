@@ -20,6 +20,7 @@ import { TransactionhistoryComponent } from './main-application/transactionhisto
 import { ShopsearchComponent } from './main-application/shopsearch/shopsearch.component';
 import { HttpClientModule } from '@angular/common/http';
 import { UserService } from './services/userService';
+import { PaymentinfoComponent } from './paymentinfo/paymentinfo.component';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,7 @@ import { UserService } from './services/userService';
     MainApplicationComponent,
     ChangingComponent,
     TransactionhistoryComponent,
+    PaymentinfoComponent,
   ],
   imports: [
     BrowserModule,

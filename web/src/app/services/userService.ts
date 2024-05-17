@@ -1,7 +1,7 @@
 import { Injectable } from "@angular/core";
 import { Observable, catchError, map } from "rxjs";
 import { HttpClient, HttpHeaders, HttpResponse, HttpStatusCode } from "@angular/common/http";
-import { Shop, IUser, IUserLogin, UserLogIn, CustomerSingUp, TransactionOfUser } from '../models/models';
+import { Shop, IUser, IUserLogin, UserLogIn, CustomerSingUp, TransactionOfUser, ShopSingUp } from '../models/models';
 
 @Injectable({
   providedIn: "root"
@@ -21,6 +21,9 @@ export class UserService {
 
   customerSignUp(customerSignUp: CustomerSingUp): Observable<CustomerSingUp> {
     return this.http.post<CustomerSingUp>(this.DEPLOY_URL + "create_customer", customerSignUp)
+  }
+  shopSignUp(shopSignUp: ShopSingUp): Observable<ShopSingUp> {
+    return this.http.post<ShopSingUp>(this.DEPLOY_URL + "create_shop", shopSignUp)
   }
 
   getShopsNames(): Observable<Shop[]> {

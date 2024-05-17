@@ -16,7 +16,7 @@ export class LoginComponent {
   submitted = false;
 
 
-  constructor(private userService: UserService) {
+  constructor(private userService: UserService, private router: Router) {
     this.getUsers()
 
     this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
@@ -25,11 +25,13 @@ export class LoginComponent {
   onSubmit() { 
     this.submitted = true; 
     this.registerUser()
+    this.router.navigate(['/homepage']);
   }
 
   getUsers(): void {
     this.userService.getUsers()
       .subscribe(users => this.users = users);
+      this.router.navigate(['/homepage']);
   }
   
 

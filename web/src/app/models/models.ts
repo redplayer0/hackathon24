@@ -19,6 +19,8 @@ export interface IUserLogin {
   email: string;
   password: string;
 }
+
+
 export class CustomerSingUp{
   constructor(
     public email: string = "",
@@ -34,14 +36,15 @@ export class CustomerSingUp{
   ){}
 }
 
-export class ShopperSingUp{
+export class ShopSingUp{
   constructor(
     public email: string = "",
     public password: string = "",
     public role: string = "",
     public vat: number = 0,
-    public shopname: string  = "",
-    public birthaddress:string = "",
+    public name: string  = "",
+    public address:string = "",
+    public picture: string =""
     
   ){}
 }
