@@ -1,6 +1,8 @@
 import { Component } from '@angular/core';
-import { Router } from '@angular/router';
+import { Router, RouterLink } from '@angular/router';
 import { UserService } from '../services/userService';
+import { IUser, IUserLogin, UserLogIn } from '../models/models'; 
+
 
 @Component({
   selector: 'app-login',
@@ -8,9 +10,35 @@ import { UserService } from '../services/userService';
   styleUrl: './login.component.css'
 })
 export class LoginComponent {
-  constructor(private router: Router, private userService: UserService) {
+  users: IUser[] = [];
+  userLogIn = new UserLogIn()
+  shops: string[] = []
+  submitted = false;
+
+
+  constructor(private userService: UserService) {
+    this.getUsers()
+
+    this.userService.getShopsNames().subscribe(shops => this.shops = shops.map((shop)=> shop.name));
   }
-  protected succesfulLogIn() {
-    this.router.navigate(['homepage']);
+
+  onSubmit() { 
+    this.submitted = true; 
+    this.registerUser()
   }
+
+  getUsers(): void {
+    this.userService.getUsers()
+      .subscribe(users => this.users = users);
+  }
+  
+
+  registerUser(): void {
+    this.userService.logInUser(this.userLogIn).subscribe(
+      resp => {
+        localStorage.setItem("mycookie", `${resp.headers.get("mycookie")}`)
+      }
+    )
+  }
+
 }
