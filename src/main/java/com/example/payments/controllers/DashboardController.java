@@ -28,7 +28,7 @@ public class DashboardController {
   private AuthService authService;
 
   @GetMapping("dashboard")
-  public AppUser getCustomer(@RequestHeader("Cookie") String cookie) {
+  public AppUser getCustomer(@RequestHeader("mycookie") String cookie) {
     Optional<User> possibleUser = authService.getUser(cookie);
 
     // if (!possibleUser.isEmpty()) {

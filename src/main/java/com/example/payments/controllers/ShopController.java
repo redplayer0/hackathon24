@@ -1,7 +1,9 @@
 package com.example.payments.controllers;
 
+import java.util.Collection;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -28,17 +30,12 @@ public class ShopController {
   private AuthService authService;
 
   @GetMapping("shops")
-  public List<Shop> getShops() {
-    return shopService.findAll();
+  public List<String> getShops() {
+    return shopService.findAll().stream().map(shop -> shop.getName()).collect(Collectors.toList());
   }
 
   @PostMapping("create_shop")
-  public String createShop(@RequestHeader("Cookie") String cookie, @RequestBody ShopCreateDTO shopDTO) {
-    Optional<User> possibleUser = authService.getUser(cookie);
-    if (!possibleUser.isEmpty()) {
-      return shopService.createShop(shopDTO, possibleUser.get().getId());
-    } else {
-      return "An error occured";
-    }
+  public String createShop(@RequestBody ShopCreateDTO shopDTO) {
+    return shopService.createShop(shopDTO);
   }
 }

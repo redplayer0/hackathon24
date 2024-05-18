@@ -7,6 +7,9 @@ import lombok.Data;
  */
 @Data
 public class CustomerCreateDTO {
+  private String email;
+  private String password;
+  private String role;
   private Integer vat;
   private String firstname;
   private String lastname;

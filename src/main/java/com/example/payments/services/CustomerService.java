@@ -8,9 +8,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import com.example.payments.entities.Customer;
+import com.example.payments.entities.User;
 import com.example.payments.entities.dtos.CustomerCreateDTO;
 import com.example.payments.entities.dtos.CustomerLimitsBalanceDTO;
 import com.example.payments.repositories.CustomerRepository;
+import com.example.payments.repositories.UserRepository;
 
 import jakarta.transaction.Transactional;
 
@@ -18,6 +20,10 @@ import jakarta.transaction.Transactional;
 public class CustomerService {
   @Autowired
   private CustomerRepository customerRepository;
+  @Autowired
+  private UserRepository userRepository;
+  @Autowired
+  private UserService userService;
 
   public boolean existsByVat(Integer vat) {
     return customerRepository.existsByVat(vat);
@@ -43,27 +49,34 @@ public class CustomerService {
   }
 
   @Transactional
-  public String createCustomer(CustomerCreateDTO customerDto, Integer user_id) {
+  public String createCustomer(CustomerCreateDTO customerDto) {
     System.out.println("CHECK CUSTOMER DTO");
     System.out.println(customerDto.toString());
-    if (!customerRepository.existsByVat(customerDto.getVat())) {
-      Customer customer = Customer.builder()
-          .vat(customerDto.getVat())
-          .firstname(customerDto.getFirstname())
-          .lastname(customerDto.getLastname())
-          .birthday(customerDto.getBirthday())
-          .birthaddress(customerDto.getBirthaddress())
-          .weeklytransfer(customerDto.getWeeklytransfer())
-          .weeklylimit(customerDto.getWeeklylimit())
-          .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-          .balance(0.0)
-          .userid(user_id)
-          .build();
-      System.out.println(customer.toString());
-      customerRepository.save(customer);
-      return "Customer record created successfully.";
-    } else {
+    if (customerRepository.existsByVat(customerDto.getVat())) {
       return "Customer already exists in the database.";
     }
+    if (userRepository.existsByEmail(customerDto.getEmail())) {
+      return "User already exists";
+    }
+    User user = User.builder()
+      .email(customerDto.getEmail())
+      .password(customerDto.getPassword())
+      .role(customerDto.getRole())
+      .build();
+    userRepository.save(user);
+    Customer customer = Customer.builder()
+      .vat(customerDto.getVat())
+      .firstname(customerDto.getFirstname())
+      .lastname(customerDto.getLastname())
+      .birthday(customerDto.getBirthday())
+      .birthaddress(customerDto.getBirthaddress())
+      .weeklytransfer(customerDto.getWeeklytransfer())
+      .weeklylimit(customerDto.getWeeklylimit())
+      .creationdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
+      .balance(0.0)
+      .userid(user.getId())
+      .build();
+    customerRepository.save(customer);
+    return "Customer record created successfully.";
   }
 }

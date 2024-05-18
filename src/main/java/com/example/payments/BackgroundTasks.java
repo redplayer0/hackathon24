@@ -11,26 +11,28 @@ import com.example.payments.services.TransactionService;
  * BackgroundTasks
  */
 
-// @Configuration
-// @EnableScheduling
-// public class BackgroundTasks {
-//   @Autowired
-//   private TransactionService transactionService;
+@Configuration
+@EnableScheduling
+public class BackgroundTasks {
+  @Autowired
+  private TransactionService transactionService;
 
-//   @Scheduled(cron = "0 */3 * * * *")
-//   public void weekly() {
-//     transactionService.processPendingTransactions();
-//     long now = System.currentTimeMillis() / 1000;
-//     System.out.println(
-//         "schedule tasks using cron jobs - " + now);
-//   }
+  @Scheduled(cron = "0 */1 * * * *")
+  // @Scheduled(cron = "*/1 * * * * *")
+  public void weekly() {
+    transactionService.processPendingTransactions();
+    long now = System.currentTimeMillis() / 1000;
+    System.out.println(
+        "Weekly Background process" + now);
+  }
 
-//   @Scheduled(cron = "0 */6 * * * *")
-//   public void monthly() {
+  @Scheduled(cron = "0 */4  * * * *")
+  // @Scheduled(cron = "*/2 * * * * *")
+  public void monthly() {
+    transactionService.processRecievedTransactions();
+    long now = System.currentTimeMillis() / 1000;
+    System.out.println(
+        "Monthly Background process" + now);
+  }
 
-//     long now = System.currentTimeMillis() / 1000;
-//     System.out.println(
-//         "schedule tasks using cron jobs - " + now);
-//   }
-
-// }
+}

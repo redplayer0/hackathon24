@@ -19,7 +19,7 @@ public class AuthService {
   @Autowired
   private UserRepository userRepository;
 
-  public Optional<User> getUser(@RequestHeader("Cookie") String cookie) {
+  public Optional<User> getUser(@RequestHeader("mycookie") String cookie) {
     byte[] rawCookie = Base64.getDecoder().decode(cookie);
     String[] emailPassword = new String(rawCookie, StandardCharsets.UTF_8).split(":");
     System.out.println(emailPassword.toString());

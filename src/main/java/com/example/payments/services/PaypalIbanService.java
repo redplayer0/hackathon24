@@ -50,7 +50,7 @@ public class PaypalIbanService {
           .bankname(paypalibanDto.getBankname())
           .vat(vat)
           .startdate(LocalDateTime.now().format(DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss")))
-          .approved("pending")
+          .approved("approved")
           .build();
       System.out.println(paypaliban.toString());
       paypalIbanRepository.save(paypaliban);
