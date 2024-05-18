@@ -25,7 +25,7 @@ public class BackgroundTasks {
         "Weekly Background process" + now);
   }
 
-  @Scheduled(cron = "0 */2  * * * *")
+  @Scheduled(cron = "0 */4  * * * *")
   // @Scheduled(cron = "*/2 * * * * *")
   public void monthly() {
     transactionService.processRecievedTransactions();
